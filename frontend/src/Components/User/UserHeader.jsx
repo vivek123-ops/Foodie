@@ -38,21 +38,24 @@ const UserHeader = () => {
             <a href="#popular" className="transition hover:text-primary">
               Popular Food
             </a>
+            <a href="#order" className="transition hover:text-primary">
+              order
+            </a>
           </div>
 
           <div className="flex items-center gap-3">
-            <a
-              href="#cart"
+            <Link
+              to="/cart"
               className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-xl hover:border-primary"
               aria-label={`Cart, ${cartCount} items`}
             >
               🛒
               {cartCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-xs font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-orange-500 px-1 text-xs font-bold text-white">
                   {cartCount}
                 </span>
               )}
-            </a>
+            </Link>
 
             <div className="hidden text-right sm:block">
               <p className="text-xs text-muted">Welcome back,</p>

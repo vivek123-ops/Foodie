@@ -9,6 +9,7 @@ import CreateShop from "./assets/Pages/Shoppages/CreateShop";
 import ShopDashboard from "./assets/Pages/Shoppages/ShopDashboard";
 import AddFood from "./assets/Pages/Shoppages/AddFood";
 import ManageMenu from "./assets/Pages/Shoppages/ManageMenu";
+import AddToCart from "./assets/Pages/UserPages/Cart";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/shop/dashboard" element={<ShopDashboard />} />
         <Route path="/shop/add-food" element={<AddFood />} />
         <Route path="/shop/food" element={<ManageMenu />} />
+        <Route path="/cart" element={<AddToCart />} />
       </Routes>
     </>
   );
