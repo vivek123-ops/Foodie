@@ -1,5 +1,6 @@
 const iteam = require("../module/itemModule");
 const Order = require("../module/OrderSchema");
+const { populate } = require("../module/UserModule");
 
 const createOrder = async (req, res) => {
   try {
@@ -61,7 +62,43 @@ const createOrder = async (req, res) => {
     });
   }
 };
+const getMyOrders = async (req, res) => {
+  try {
+    // JWT middleware se logged-in user ki ID
+    const userId = req.userId;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Please login first",
+      });
+    }
+
+    // Apne Order schema ke user-reference field ka naam use karna.
+    const orders = await Order.find({
+      user: userId,
+    })
+      .populate("iteamList.food")
+      .sort({ createdAt: -1 });
+
+    console.log(orders);
+
+    return res.status(200).json({
+      success: true,
+      count: orders.length,
+      orders,
+    });
+  } catch (error) {
+    console.error("Get My Orders Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch orders",
+    });
+  }
+};
 
 module.exports = {
   createOrder,
+  getMyOrders,
 };
