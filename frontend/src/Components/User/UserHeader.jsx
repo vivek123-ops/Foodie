@@ -38,9 +38,9 @@ const UserHeader = () => {
             <a href="#popular" className="transition hover:text-primary">
               Popular Food
             </a>
-            <a href="#order" className="transition hover:text-primary">
+            <Link to="/checkorder" className="transition hover:text-primary">
               order
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center gap-3">

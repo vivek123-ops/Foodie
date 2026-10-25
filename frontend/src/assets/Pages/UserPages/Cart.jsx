@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../../Redux/cartSlice";
+import { addToCart, clearCart, removeFromCart } from "../../../Redux/cartSlice";
 import axios from "axios";
 
 const money = (value) => {
@@ -83,8 +83,6 @@ export default function AddToCart() {
             },
           };
 
-          console.log(orderData);
-
           const response = await axios.post(
             "http://localhost:3000/api/sumit/order",
             orderData,
@@ -94,8 +92,9 @@ export default function AddToCart() {
           console.log("Backend response:", response.data);
 
           alert("Order data sent to backend successfully!");
+          dispatch(clearCart());
 
-          navigate("/checkout", {
+          navigate("/checkorder", {
             state: { order: response.data.order },
           });
         } catch (error) {
