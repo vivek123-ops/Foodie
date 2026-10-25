@@ -29,15 +29,15 @@ const UserHeader = () => {
           </Link>
 
           <div className="hidden items-center gap-7 text-sm font-medium md:flex">
-            <a href="#home" className="text-primary">
+            <Link to="/user/home" className="text-primary">
               Home
-            </a>
+            </Link>
             <a href="#categories" className="transition hover:text-primary">
               Categories
             </a>
-            <a href="#popular" className="transition hover:text-primary">
+            <Link to="/user/menu" className="transition hover:text-primary">
               Popular Food
-            </a>
+            </Link>
             <Link to="/checkorder" className="transition hover:text-primary">
               order
             </Link>

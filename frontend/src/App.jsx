@@ -11,6 +11,9 @@ import AddFood from "./assets/Pages/Shoppages/AddFood";
 import ManageMenu from "./assets/Pages/Shoppages/ManageMenu";
 import AddToCart from "./assets/Pages/UserPages/Cart";
 import MyOrders from "./assets/Pages/UserPages/MyOrder";
+import OurMenu from "./assets/Pages/UserPages/OurMenu";
+import UserHeader from "./Components/User/UserHeader";
+import Menu from "./assets/Pages/UserPages/Menu";
 
 const App = () => {
   return (
@@ -27,6 +30,8 @@ const App = () => {
         <Route path="/shop/food" element={<ManageMenu />} />
         <Route path="/cart" element={<AddToCart />} />
         <Route path="/checkorder" element={<MyOrders />} />
+        <Route path="/user/home/popular-food" element={<OurMenu />} />
+        <Route path="/user/menu" element={<Menu />} />
       </Routes>
     </>
   );

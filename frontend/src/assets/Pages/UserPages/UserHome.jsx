@@ -17,11 +17,8 @@ function UserHome() {
         {/* Hero */}
 
         <HeroSection />
-
         {/* Popular Food */}
-
         <OurMenu />
-
         {/* Offer */}
         {<Offer />}
       </main>

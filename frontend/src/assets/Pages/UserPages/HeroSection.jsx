@@ -4,7 +4,7 @@ export const HeroSection = () => {
   return (
     <>
       {" "}
-      <section id="home" className="px-4 pt-8 sm:px-6 lg:px-8">
+      <section className="px-4 pt-8 sm:px-6 lg:px-8">
         <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-8 overflow-hidden rounded-3xl bg-light-orange px-6 py-12 sm:px-10 lg:flex-row lg:px-16 lg:py-16">
           <div className="relative z-10 flex-1">
             <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-primary shadow-sm">
