@@ -20,7 +20,6 @@ const createshop = async (req, res) => {
         message: "All fields are required",
       });
     }
-    console.log("Uploaded file:", req.file);
 
     // Check if image was uploaded
     if (!req.file) {
@@ -112,7 +111,7 @@ const additeam = async (req, res) => {
       iteamName,
       iteamImage: result.secure_url,
       price,
-      shopUser: req.userId,
+      iteamShop: req.userId,
       category,
     });
     shop.iteamList.push(newiteam._id);

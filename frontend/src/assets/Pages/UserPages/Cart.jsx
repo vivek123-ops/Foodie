@@ -53,30 +53,6 @@ export default function AddToCart() {
     }
   };
 
-  // location nikl
-  const getUserLocation = () => {
-    if (!navigator.geolocation) {
-      alert("Your browser does not support location.");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-      },
-      (error) => {
-        console.error("Location error:", error.message);
-        alert("Please allow location access.");
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      },
-    );
-  };
-
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       alert("Your cart is empty!");
@@ -110,7 +86,7 @@ export default function AddToCart() {
           console.log(orderData);
 
           const response = await axios.post(
-            "http://localhost:3000/api/orders",
+            "http://localhost:3000/api/sumit/order",
             orderData,
             { withCredentials: true },
           );

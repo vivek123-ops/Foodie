@@ -7,6 +7,7 @@ const Auth = require("./Routers/AuthRouter");
 const User = require("./Routers/UserRouter");
 const Shop = require("./Routers/ShopRouter");
 const cors = require("cors");
+const order = require("./Routers/OrderRouter");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -19,6 +20,7 @@ app.use(
 app.use("/api", Auth);
 app.use("/api", User);
 app.use("/api", Shop);
+app.use("/api", order);
 
 // start the server
 const startserver = async () => {
