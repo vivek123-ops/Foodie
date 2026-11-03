@@ -96,7 +96,7 @@ export default function MyOrders() {
             </div>
 
             <Link
-              to="/"
+              to="/user/menu"
               className="rounded-xl bg-orange-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600"
             >
               Order Food

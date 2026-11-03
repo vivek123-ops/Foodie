@@ -16,6 +16,7 @@ import UserHeader from "./Components/User/UserHeader";
 import Menu from "./assets/Pages/UserPages/Menu";
 
 const App = () => {
+  console.log("NEW APP.JSX LOADED");
   return (
     <>
       <Routes>

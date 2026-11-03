@@ -11,6 +11,7 @@ const UserHeader = () => {
     localStorage.removeItem("user");
     window.location.href = "/login";
   };
+
   const cartItems = useSelector((state) => state.cart.items);
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -32,9 +33,7 @@ const UserHeader = () => {
             <Link to="/user/home" className="text-primary">
               Home
             </Link>
-            <a href="#categories" className="transition hover:text-primary">
-              Categories
-            </a>
+
             <Link to="/user/menu" className="transition hover:text-primary">
               Popular Food
             </Link>

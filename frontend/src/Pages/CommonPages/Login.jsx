@@ -148,7 +148,7 @@ const Login = () => {
                 htmlFor="email"
                 className="mb-2 block text-sm font-semibold text-heading"
               >
-                Email Address
+                Email Addressddd
               </label>
 
               <input

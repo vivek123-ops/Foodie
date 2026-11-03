@@ -31,9 +31,11 @@ export default function Menu() {
         setError("");
 
         // Apne actual backend GET endpoint ke according URL change karna.
-        const response = await axios.get("http://localhost:3000/api/item/all");
+        const response = await axios.get("http://localhost:3000/api/getfoods");
 
         const data = response.data;
+
+        console.log(data);
 
         const foodList = Array.isArray(data)
           ? data
@@ -119,6 +121,7 @@ export default function Menu() {
 
       <main id="food-menu" className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
         {/* Heading */}
+        {<Headers />}
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-semibold text-orange-600">OUR MENU</p>

@@ -126,7 +126,7 @@ export default function AddToCart() {
           </Link>
           <nav className="flex items-center gap-3 text-sm font-semibold sm:gap-6">
             <Link
-              to="/user/home"
+              to="/user/menu"
               className="text-slate-600 transition hover:text-orange-600"
             >
               Explore food
@@ -162,7 +162,7 @@ export default function AddToCart() {
               menu and find something you love.
             </p>
             <Link
-              to="/explore"
+              to="/user/menu"
               className="mt-7 inline-flex rounded-xl bg-orange-600 px-6 py-3 font-bold text-white shadow-lg shadow-orange-600/20 transition hover:bg-orange-700"
             >
               Explore food

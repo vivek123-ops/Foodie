@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/cartSlice";
 import UserHeader from "../../../Components/User/UserHeader";
+import FoodComponent from "../../../Components/User/FoodComponent";
 
 const categories = [
   "All",
@@ -31,9 +32,12 @@ export default function Menu() {
         setError("");
 
         // Apne actual backend GET endpoint ke according URL change karna.
-        const response = await axios.get("http://localhost:3000/api/item/all");
+        const response = await axios.get("http://localhost:3000/api/getfoods", {
+          withCredentials: true,
+        });
 
         const data = response.data;
+        console.log(data);
 
         const foodList = Array.isArray(data)
           ? data
@@ -198,64 +202,7 @@ export default function Menu() {
         {!loading && !error && filteredFoods.length > 0 && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredFoods.map((food) => {
-              const name =
-                food.itemName || food.iteamName || food.name || "Food Item";
-
-              const image =
-                food.itemImage || food.foodImage || food.image || "";
-
-              return (
-                <div
-                  key={food._id}
-                  className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-                >
-                  {/* Food Image */}
-                  <div className="relative h-52 overflow-hidden bg-orange-50">
-                    {image ? (
-                      <img
-                        src={image}
-                        alt={name}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-6xl">
-                        🍽️
-                      </div>
-                    )}
-
-                    {food.category && (
-                      <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-orange-600 shadow-sm">
-                        {food.category}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Food Details */}
-                  <div className="p-5">
-                    <h3 className="truncate text-lg font-bold text-gray-900">
-                      {name}
-                    </h3>
-
-                    <p className="mt-2 line-clamp-2 min-h-10 text-sm text-gray-500">
-                      {food.description ||
-                        "Freshly prepared and full of flavour."}
-                    </p>
-
-                    <div className="mt-5 flex items-center justify-between gap-3">
-                      <p className="text-xl font-extrabold text-orange-600">
-                        ₹{(Number(food.price) || 0).toLocaleString("en-IN")}
-                      </p>
-
-                      <button
-                        onClick={() => handleAddToCart(food)}
-                        className="rounded-xl bg-orange-500 px-4 py-2.5 font-semibold text-white transition hover:bg-orange-600 active:scale-95"
-                      >
-                        + Add
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
+              return <FoodComponent key={food._id} food={food} />;
             })}
           </div>
         )}
