@@ -12,7 +12,9 @@ const signup = async (req, res) => {
         message: "all feild is required",
       });
     }
+
     let user = await User.findOne({ email });
+
     // check user
     if (user) {
       if (user.userType == userType) {
