@@ -96,7 +96,7 @@ export default function MyOrders() {
             </div>
 
             <Link
-              to="/"
+              to="/user/menu"
               className="rounded-xl bg-orange-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600"
             >
               Order Food
@@ -142,7 +142,7 @@ export default function MyOrders() {
               </p>
 
               <Link
-                to="/"
+                to="/user/menu"
                 className="mt-6 inline-block rounded-xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
               >
                 Explore Food
