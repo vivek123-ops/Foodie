@@ -14,6 +14,7 @@ import MyOrders from "./assets/Pages/UserPages/MyOrder";
 import OurMenu from "./assets/Pages/UserPages/OurMenu";
 import UserHeader from "./Components/User/UserHeader";
 import Menu from "./assets/Pages/UserPages/Menu";
+import ShopLayout from "./assets/Pages/Shoppages/Shoplayout";
 
 const App = () => {
   console.log("NEW APP.JSX LOADED");
@@ -24,11 +25,15 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user/home" element={<UserHome />} />
-        <Route path="/shop/home" element={<ShopHome />} />
-        <Route path="/shop/create" element={<CreateShop />} />
-        <Route path="/shop/dashboard" element={<ShopDashboard />} />
-        <Route path="/shop/add-food" element={<AddFood />} />
-        <Route path="/shop/food" element={<ManageMenu />} />
+
+        <Route path="/shop" element={<ShopLayout />}>
+          <Route path="create" element={<CreateShop />} />
+          <Route path="dashboard" element={<ShopDashboard />} />
+          <Route path="add-food" element={<AddFood />} />
+          <Route path="food" element={<ManageMenu />} />
+          {/* <Route path="orders" element={<OrderPages />} /> */}
+        </Route>
+
         <Route path="/cart" element={<AddToCart />} />
         <Route path="/checkorder" element={<MyOrders />} />
         <Route path="/user/home/popular-food" element={<OurMenu />} />

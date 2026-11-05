@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
+  const naviagate = useNavigate();
   const [formData, setFormData] = useState({
     iteamName: "",
     price: "",
@@ -107,6 +109,8 @@ const AddFood = () => {
       if (preview) {
         URL.revokeObjectURL(preview);
       }
+
+      naviagate("/shop/food");
 
       setPreview("");
     } catch (error) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Slidebar } from "./Slidebar";
+
+import { Sidebar } from "./Sidebar";
 
 const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,9 +21,9 @@ const Header = () => {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <Slidebar />
+        <Sidebar />
       </aside>
-      <header className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-gray-100 bg-white px-4 py-4 sm:px-7 lg:px-10">
+      <header className="sticky top-0 z-30 flex w-full items-center justify-between border-b border-gray-100 bg-white px-4 py-4 sm:px-7 lg:ml-72 lg:w-[calc(100%-18rem)] lg:px-10">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(true)}

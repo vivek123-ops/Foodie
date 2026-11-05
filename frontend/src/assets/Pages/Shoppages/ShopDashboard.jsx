@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Sidebar } from "../../../Components/Shop/Sidebar";
 
 const ShopDashboard = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Demo data: baad mein backend API se connect karenge
   const stats = [
@@ -105,147 +105,9 @@ const ShopDashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
-
-  const SidebarContent = () => (
-    <>
-      <Link to="/shop/dashboard" className="mb-10 flex items-center gap-3 px-2">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-500 text-2xl">
-          🍔
-        </div>
-
-        <div>
-          <h1 className="text-2xl font-extrabold text-orange-500">Foodie</h1>
-          <p className="text-xs text-gray-400">Partner Dashboard</p>
-        </div>
-      </Link>
-
-      <p className="mb-3 px-3 text-xs font-bold uppercase tracking-widest text-gray-400">
-        Main Menu
-      </p>
-
-      <nav className="space-y-2">
-        <Link
-          to="/shop/dashboard"
-          onClick={() => setSidebarOpen(false)}
-          className="flex items-center gap-3 rounded-xl bg-orange-50 px-4 py-3 font-semibold text-orange-600"
-        >
-          <span>📊</span>
-          Dashboard
-        </Link>
-
-        <Link
-          to="/shop/food"
-          onClick={() => setSidebarOpen(false)}
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-orange-600"
-        >
-          <span>🍕</span>
-          Manage Food
-        </Link>
-
-        <Link
-          to="/shop/orders"
-          onClick={() => setSidebarOpen(false)}
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-orange-600"
-        >
-          <span>📦</span>
-          Orders
-        </Link>
-
-        <Link
-          to="/shop/profile"
-          onClick={() => setSidebarOpen(false)}
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-orange-600"
-        >
-          <span>🏪</span>
-          Shop Profile
-        </Link>
-      </nav>
-
-      <div className="mt-auto pt-10">
-        <div className="rounded-2xl bg-orange-50 p-4">
-          <div className="text-2xl">💡</div>
-          <h3 className="mt-2 font-bold text-gray-800">Grow your business</h3>
-          <p className="mt-1 text-xs leading-5 text-gray-500">
-            Keep your menu updated and serve your customers better.
-          </p>
-        </div>
-
-        <button
-          onClick={handleLogout}
-          className="mt-5 flex w-full items-center gap-3 rounded-xl px-4 py-3 font-medium text-red-500 transition hover:bg-red-50"
-        >
-          <span>🚪</span>
-          Logout
-        </button>
-      </div>
-    </>
-  );
-
   return (
     <div className="min-h-screen bg-gray-50 lg:flex">
-      {/* Mobile overlay */}
-      {sidebarOpen && (
-        <button
-          type="button"
-          aria-label="Close sidebar"
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 z-40 bg-black/40 lg:hidden"
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-gray-100 bg-white p-6 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <SidebarContent />
-      </aside>
-
-      {/* Main content */}
-      <main className="min-w-0 flex-1">
-        {/* Topbar */}
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-gray-100 bg-white px-4 py-4 sm:px-7 lg:px-10">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className="rounded-lg p-2 text-xl hover:bg-gray-100 lg:hidden"
-              aria-label="Open sidebar"
-            >
-              ☰
-            </button>
-
-            <div>
-              <h2 className="text-xl font-extrabold text-gray-900 sm:text-2xl">
-                Dashboard
-              </h2>
-              <p className="mt-1 hidden text-sm text-gray-500 sm:block">
-                Manage your shop and track your business.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              aria-label="Notifications"
-              className="relative rounded-xl border border-gray-100 p-3 hover:bg-gray-50"
-            >
-              🔔
-              <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500" />
-            </button>
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 font-bold text-orange-600">
-              S
-            </div>
-          </div>
-        </header>
-
+      <main className="min-w-0 w-full">
         <div className="space-y-8 p-4 sm:p-7 lg:p-10">
           {/* Welcome */}
           <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white sm:p-9">
