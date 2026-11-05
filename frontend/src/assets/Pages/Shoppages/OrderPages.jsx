@@ -1,6 +1,50 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const OrderPages = () => {
+  const recentOrders = [
+    {
+      id: "#FD1001",
+      customer: "Rahul Sharma",
+      items: "2x Burger, 1x Fries",
+      amount: 349,
+      status: "Pending",
+    },
+    {
+      id: "#FD1002",
+      customer: "Priya Singh",
+      items: "1x Pizza, 2x Coke",
+      amount: 499,
+      status: "Preparing",
+    },
+    {
+      id: "#FD1003",
+      customer: "Aman Verma",
+      items: "2x Biryani",
+      amount: 399,
+      status: "Delivered",
+    },
+    {
+      id: "#FD1004",
+      customer: "Neha Gupta",
+      items: "1x Momos, 1x Burger",
+      amount: 279,
+      status: "Pending",
+    },
+  ];
+
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case "Pending":
+        return "bg-yellow-100 text-yellow-700";
+      case "Preparing":
+        return "bg-blue-100 text-blue-700";
+      case "Delivered":
+        return "bg-green-100 text-green-700";
+      default:
+        return "bg-gray-100 text-gray-700";
+    }
+  };
   return (
     <>
       {" "}

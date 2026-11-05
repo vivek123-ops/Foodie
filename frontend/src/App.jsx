@@ -15,6 +15,7 @@ import OurMenu from "./assets/Pages/UserPages/OurMenu";
 import UserHeader from "./Components/User/UserHeader";
 import Menu from "./assets/Pages/UserPages/Menu";
 import ShopLayout from "./assets/Pages/Shoppages/Shoplayout";
+import OrderPages from "./assets/Pages/Shoppages/OrderPages";
 
 const App = () => {
   console.log("NEW APP.JSX LOADED");
@@ -31,7 +32,7 @@ const App = () => {
           <Route path="dashboard" element={<ShopDashboard />} />
           <Route path="add-food" element={<AddFood />} />
           <Route path="food" element={<ManageMenu />} />
-          {/* <Route path="orders" element={<OrderPages />} /> */}
+          <Route path="orders" element={<OrderPages />} />
         </Route>
 
         <Route path="/cart" element={<AddToCart />} />
