@@ -94,8 +94,6 @@ export default function Menu() {
 
   return (
     <div className="min-h-screen bg-orange-50/40">
-      {/* Hero Section */}
-      {<UserHeader />}
       <section className="bg-gradient-to-r from-orange-500 to-red-500 px-5 py-14 text-white sm:px-10">
         <div className="mx-auto max-w-7xl">
           <p className="mb-3 font-semibold uppercase tracking-widest text-orange-100">

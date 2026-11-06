@@ -77,8 +77,6 @@ export default function MyOrders() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <UserHeader />
-
       <main className="px-4 py-8 sm:px-8">
         <div className="mx-auto max-w-5xl">
           {/* Page Header */}

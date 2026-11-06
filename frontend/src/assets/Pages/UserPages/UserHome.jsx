@@ -11,7 +11,6 @@ function UserHome() {
   return (
     <div className="min-h-screen bg-background text-heading">
       {/* Navbar */}
-      <UserHeader />
 
       <main>
         {/* Hero */}

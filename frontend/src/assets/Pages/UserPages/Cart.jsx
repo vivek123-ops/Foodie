@@ -116,28 +116,6 @@ export default function AddToCart() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <Link
-            to="/"
-            className="text-2xl font-black tracking-tight text-orange-600"
-          >
-            Foodie<span className="text-slate-900">.</span>
-          </Link>
-          <nav className="flex items-center gap-3 text-sm font-semibold sm:gap-6">
-            <Link
-              to="/user/menu"
-              className="text-slate-600 transition hover:text-orange-600"
-            >
-              Explore food
-            </Link>
-            <span className="rounded-full bg-orange-100 px-3 py-2 text-orange-700">
-              🛒 Cart ({cartItems.length})
-            </span>
-          </nav>
-        </div>
-      </header>
-
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-8">
           <p className="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-orange-600">
