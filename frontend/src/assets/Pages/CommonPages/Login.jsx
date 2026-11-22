@@ -54,7 +54,7 @@ const Login = () => {
           if (response.data.hasShop) {
             navigate("/shop/dashboard");
           } else {
-            navigate("/shop/home");
+            navigate("/shop/create");
           }
           break;
 

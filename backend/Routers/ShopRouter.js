@@ -33,4 +33,12 @@ shop.delete(
   checkAuthication,
   shopController.deleteIteam,
 );
+
+shop.get(
+  "/shop/dashboard-stats",
+  verify,
+  checkAuthication,
+  shopController.getDashboardStats,
+);
+
 module.exports = shop;

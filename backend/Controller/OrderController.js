@@ -1,5 +1,7 @@
 const iteam = require("../module/itemModule");
 const Order = require("../module/OrderSchema");
+
+const shop = require("../module/ShopModule");
 const { populate } = require("../module/UserModule");
 
 const createOrder = async (req, res) => {
@@ -11,6 +13,8 @@ const createOrder = async (req, res) => {
 
     for (const cartItem of items) {
       const food = await iteam.findById(cartItem.foodId);
+      console.log("Food:", food);
+      console.log("Food Shop ID:", food?.iteamShop);
       if (!food) {
         return res.status(401).json({
           message: "food is not found",
@@ -47,6 +51,8 @@ const createOrder = async (req, res) => {
         totalprice: group.totalAmount,
         address: deliveryLocation,
       });
+
+      console.log("Created Order:", order);
 
       orders.push(order);
     }
@@ -98,7 +104,40 @@ const getMyOrders = async (req, res) => {
   }
 };
 
+const getshopOrder = async (req, res) => {
+  try {
+    const Shop = await shop.findOne({
+      shopUser: req.userId,
+    });
+
+    if (!Shop) {
+      return res.status(404).json({
+        message: "Shop not found",
+      });
+    }
+
+    const orders = await Order.find({
+      shop: Shop._id,
+    })
+      .populate("user", "username email phone")
+      .populate("iteamList.food")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      message: "Your orders",
+      orders,
+    });
+  } catch (error) {
+    console.error("Get Shop Orders Error:", error);
+
+    return res.status(500).json({
+      message: "Failed to fetch orders",
+    });
+  }
+};
+
 module.exports = {
   createOrder,
+  getshopOrder,
   getMyOrders,
 };

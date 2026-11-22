@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const shop = require("./ShopModule");
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -23,7 +24,7 @@ const OrderSchema = new mongoose.Schema(
 
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
       required: true,
     },
 

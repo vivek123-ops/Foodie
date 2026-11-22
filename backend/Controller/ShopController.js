@@ -2,6 +2,7 @@ const Shop = require("../module/ShopModule");
 const iteam = require("../module/itemModule");
 const User = require("../module/UserModule");
 const cloudinary = require("../config/cloudnary");
+const Order = require("../module/OrderSchema");
 
 const createshop = async (req, res) => {
   try {
@@ -111,7 +112,7 @@ const additeam = async (req, res) => {
       iteamName,
       iteamImage: result.secure_url,
       price,
-      iteamShop: req.userId,
+      iteamShop: shop._id,
       category,
     });
     shop.iteamList.push(newiteam._id);
@@ -230,10 +231,79 @@ const deleteIteam = async (req, res) => {
   }
 };
 
+const getDashboardStats = async (req, res) => {
+  try {
+    // Logged-in user ID
+    const userId = req.userId;
+
+    // Find shop
+    const shop = await Shop.findOne({
+      shopUser: userId,
+    });
+
+    if (!shop) {
+      return res.status(404).json({
+        message: "Shop not found",
+      });
+    }
+
+    // Total Food Items
+    const foodItems = shop.iteamList.length;
+
+    // Total Orders
+    const totalOrders = await Order.countDocuments({
+      shop: shop._id,
+    });
+
+    // Pending Orders
+    const pendingOrders = await Order.countDocuments({
+      shop: shop._id,
+      status: "Pending",
+    });
+
+    // Total Revenue
+    const revenue = await Order.aggregate([
+      {
+        $match: {
+          shop: shop._id,
+          status: "Delivered",
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          totalRevenue: {
+            $sum: "$totalAmount",
+          },
+        },
+      },
+    ]);
+
+    const totalRevenue = revenue.length > 0 ? revenue[0].totalRevenue : 0;
+
+    return res.status(200).json({
+      success: true,
+      stats: {
+        totalOrders,
+        totalRevenue,
+        foodItems,
+        pendingOrders,
+      },
+    });
+  } catch (error) {
+    console.log("Dashboard Error:", error);
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+    });
+  }
+};
+
 module.exports = {
   createshop,
   additeam,
   getShopItems,
   editIteam,
   deleteIteam,
+  getDashboardStats,
 };
