@@ -13,4 +13,10 @@ order.get(
   orderController.getshopOrder,
 );
 
+order.put(
+  "/orders/:orderId/status",
+  isLogin,
+  orderController.updateOrderStatus,
+);
+
 module.exports = order;

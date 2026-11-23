@@ -233,10 +233,8 @@ const deleteIteam = async (req, res) => {
 
 const getDashboardStats = async (req, res) => {
   try {
-    // Logged-in user ID
     const userId = req.userId;
 
-    // Find shop
     const shop = await Shop.findOne({
       shopUser: userId,
     });
@@ -258,7 +256,7 @@ const getDashboardStats = async (req, res) => {
     // Pending Orders
     const pendingOrders = await Order.countDocuments({
       shop: shop._id,
-      status: "Pending",
+      status: "pending",
     });
 
     // Total Revenue
@@ -266,14 +264,14 @@ const getDashboardStats = async (req, res) => {
       {
         $match: {
           shop: shop._id,
-          status: "Delivered",
+          status: "delivery",
         },
       },
       {
         $group: {
           _id: null,
           totalRevenue: {
-            $sum: "$totalAmount",
+            $sum: "$totalprice",
           },
         },
       },

@@ -42,6 +42,26 @@ const OrderPages = () => {
     }
   };
 
+  const updateStatus = async (orderId, status) => {
+    try {
+      const result = await axios.put(
+        `http://localhost:3000/api/orders/${orderId}/status`,
+        { status },
+        { withCredentials: true },
+      );
+
+      setorders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId
+            ? { ...order, status: result.data.order.status }
+            : order,
+        ),
+      );
+    } catch (error) {
+      console.log("Update Error:", error.response?.data || error.message);
+    }
+  };
+
   return (
     <section className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
       {/* Header */}
@@ -107,13 +127,19 @@ const OrderPages = () => {
 
                   {/* Status */}
                   <td className="px-6 py-4">
-                    <span
-                      className={`rounded-full px-3 py-1.5 text-xs font-bold ${getStatusStyle(
+                    <select
+                      value={order.status}
+                      onChange={(e) => updateStatus(order._id, e.target.value)}
+                      className={`rounded-lg border-0 px-3 py-2 text-xs font-bold outline-none ${getStatusStyle(
                         order.status,
                       )}`}
                     >
-                      {order.status}
-                    </span>
+                      <option value="pending">Pending</option>
+                      <option value="accepted">Accepted</option>
+                      <option value="start preparing">Start Preparing</option>
+                      <option value="delivery">Delivery</option>
+                      <option value="cancel">Cancel</option>
+                    </select>
                   </td>
                 </tr>
               ))

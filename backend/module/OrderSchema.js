@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const shop = require("./ShopModule");
 
 const OrderSchema = new mongoose.Schema(
   {
@@ -36,7 +35,7 @@ const OrderSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["pending", "accepted", "start preparing", "delivery", "cancel"],
+      enum: ["Pending", "accepted", "start preparing", "delivery", "cancel"],
       default: "pending",
     },
 

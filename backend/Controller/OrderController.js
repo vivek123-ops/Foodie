@@ -87,8 +87,6 @@ const getMyOrders = async (req, res) => {
       .populate("iteamList.food")
       .sort({ createdAt: -1 });
 
-    console.log(orders);
-
     return res.status(200).json({
       success: true,
       count: orders.length,
@@ -136,8 +134,67 @@ const getshopOrder = async (req, res) => {
   }
 };
 
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const allowedStatus = [
+      "pending",
+      "accepted",
+      "start preparing",
+      "delivery",
+      "cancel",
+    ];
+
+    if (!allowedStatus.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid order status",
+      });
+    }
+
+    // Logged-in shopkeeper ki shop find karo
+    const Shop = await shop.findOne({
+      shopUser: req.userId,
+    });
+
+    if (!Shop) {
+      return res.status(404).json({
+        message: "Shop not found",
+      });
+    }
+
+    // Sirf apni shop ka order update kar sakta hai
+    const order = await Order.findOne({
+      _id: orderId,
+      shop: Shop._id,
+    });
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    order.status = status;
+    await order.save();
+
+    return res.status(200).json({
+      message: "Order status updated successfully",
+      order,
+    });
+  } catch (error) {
+    console.log("Update Order Status Error:", error);
+
+    return res.status(500).json({
+      message: "Failed to update order status",
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getshopOrder,
   getMyOrders,
+  updateOrderStatus,
 };
