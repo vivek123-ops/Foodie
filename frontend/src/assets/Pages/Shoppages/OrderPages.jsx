@@ -57,6 +57,8 @@ const OrderPages = () => {
             : order,
         ),
       );
+
+      console.log("Status Updated Successfully");
     } catch (error) {
       console.log("Update Error:", error.response?.data || error.message);
     }

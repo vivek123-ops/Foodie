@@ -89,12 +89,10 @@ export default function AddToCart() {
             { withCredentials: true },
           );
 
-          console.log("Backend response:", response.data);
-
           alert("Order data sent to backend successfully!");
           dispatch(clearCart());
 
-          navigate("/checkorder", {
+          navigate("/user/checkorder", {
             state: { order: response.data.order },
           });
         } catch (error) {

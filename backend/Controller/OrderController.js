@@ -52,8 +52,6 @@ const createOrder = async (req, res) => {
         address: deliveryLocation,
       });
 
-      console.log("Created Order:", order);
-
       orders.push(order);
     }
 
